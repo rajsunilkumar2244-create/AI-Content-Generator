@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-ink-950 text-white;
+    font-family: 'Satoshi', sans-serif;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Clash Display', sans-serif;
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-ink-900; }
+  ::-webkit-scrollbar-thumb { @apply bg-ink-600 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-ink-700; }
+  ::selection { @apply bg-ember-500/30 text-white; }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-ember-500 hover:bg-ember-400 active:bg-ember-600
+           text-white font-display font-semibold
+           px-6 py-3 rounded-xl
+           transition-all duration-200
+           disabled:opacity-40 disabled:cursor-not-allowed
+           focus:outline-none focus:ring-2 focus:ring-ember-400/50;
+  }
+
+  .card {
+    @apply bg-ink-900 border border-ink-700/60 rounded-2xl;
+  }
+
+  .input-field {
+    @apply bg-ink-800 border border-ink-600 rounded-xl
+           text-white placeholder-white/30
+           px-4 py-3 w-full
+           transition-all duration-200
+           focus:outline-none focus:border-ember-500/70 focus:ring-2 focus:ring-ember-500/20
+           font-body;
+  }
+
+  .option-pill {
+    @apply flex items-center gap-2 px-4 py-2.5 rounded-xl border
+           cursor-pointer transition-all duration-200 text-sm font-medium
+           border-ink-600 bg-ink-800 text-white/60;
+  }
+
+  .option-pill:hover {
+    border-color: #32324a;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .option-pill.selected {
+    @apply border-ember-500/70 bg-ember-500/10 text-ember-400;
+  }
+
+  .shimmer-bg {
+    background: linear-gradient(
+      90deg,
+      theme('colors.ink.800') 0%,
+      theme('colors.ink.700') 50%,
+      theme('colors.ink.800') 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.8s infinite linear;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #ff6b35 0%, #f59e0b 50%, #ff6b35 100%);
+  }
+
+  .glow-ember {
+    box-shadow: 0 0 30px rgba(240, 78, 26, 0.15), 0 0 60px rgba(240, 78, 26, 0.06);
+  }
+
+  .noise-bg {
+    position: relative;
+  }
+
+  .noise-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    border-radius: inherit;
+  }
+}
