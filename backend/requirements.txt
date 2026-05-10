@@ -7,3 +7,5 @@ pydantic==2.7.4
 pydantic-settings==2.7.0
 slowapi==0.1.9
 google-genai==1.14.0
+groq==0.18.0
+
